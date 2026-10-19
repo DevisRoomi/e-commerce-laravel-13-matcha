@@ -16,4 +16,26 @@ class HomeController extends Controller
 
         return view('index', compact('categories', 'featured_products', 'sale_products'));
     }
+
+    public function about()
+    {
+        return view('about');
+    }
+
+    public function contact()
+    {
+        return view('contact');
+    }
+
+    public function contact_store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:100',
+            'email' => 'required|email|max:150',
+            'phone' => 'nullable|string|max:20',
+            'comment' => 'required|string|max:1000',
+        ]);
+
+        return back()->with('status', 'Pesan Anda telah berhasil dikirim! Tim Matcha Atelier akan segera menghubungi Anda.');
+    }
 }

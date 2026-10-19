@@ -274,11 +274,11 @@
         </a>
       </div>
 
-      <a href="#" class="header-tools__item header-tools__cart js-open-aside" data-aside="cartDrawer">
+      <a href="{{ route('cart.index') }}" class="header-tools__item header-tools__cart position-relative" title="Cart">
         <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <use href="#icon_cart" />
         </svg>
-        <span class="cart-amount d-block position-absolute js-cart-items-count">3</span>
+        <span class="cart-amount d-block position-absolute js-cart-items-count">{{ Cart::instance('cart')->count() }}</span>
       </a>
     </div>
 
@@ -287,8 +287,8 @@
       <div class="container">
         <form action="{{ route('shop.index') }}" method="GET" class="search-field position-relative mt-4 mb-3">
           <div class="position-relative">
-            <input class="search-field__input w-100 border rounded-1" type="text" name="search"
-              placeholder="Cari produk matcha..." value="{{ request('search') }}" />
+            <input class="search-field__input search-popup__input w-100 fw-normal" type="text"
+              name="search" placeholder="Cari matcha, alat teh, busana..." value="{{ request('search') }}" />
             <button class="btn-icon search-popup__submit pb-0 me-2" type="submit">
               <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -302,27 +302,27 @@
             <div class="search-result"></div>
           </div>
         </form>
-      </div>
 
-      <div class="container">
-        <div class="overflow-hidden">
-          <ul class="navigation__list list-unstyled position-relative">
-            <li class="navigation__item">
-              <a href="index.html" class="navigation__link">Home</a>
-            </li>
-            <li class="navigation__item">
-              <a href="shop.html" class="navigation__link">Shop</a>
-            </li>
-            <li class="navigation__item">
-              <a href="{{ route('cart.index') }}" class="navigation__link {{ request()->routeIs('cart.*') ? 'navigation__link_active' : '' }}">Cart</a>
-            </li>
-            <li class="navigation__item">
-              <a href="about.html" class="navigation__link">About</a>
-            </li>
-            <li class="navigation__item">
-              <a href="contact.html" class="navigation__link">Contact</a>
-            </li>
-          </ul>
+        <div class="container">
+          <div class="overflow-hidden">
+            <ul class="navigation__list list-unstyled position-relative">
+              <li class="navigation__item">
+                <a href="{{ route('home.index') }}" class="navigation__link {{ request()->routeIs('home.index') ? 'navigation__link_active' : '' }}">Home</a>
+              </li>
+              <li class="navigation__item">
+                <a href="{{ route('shop.index') }}" class="navigation__link {{ request()->routeIs('shop.*') ? 'navigation__link_active' : '' }}">Shop</a>
+              </li>
+              <li class="navigation__item">
+                <a href="{{ route('cart.index') }}" class="navigation__link {{ request()->routeIs('cart.*') ? 'navigation__link_active' : '' }}">Cart</a>
+              </li>
+              <li class="navigation__item">
+                <a href="{{ route('home.about') }}" class="navigation__link {{ request()->routeIs('home.about') ? 'navigation__link_active' : '' }}">About</a>
+              </li>
+              <li class="navigation__item">
+                <a href="{{ route('home.contact') }}" class="navigation__link {{ request()->routeIs('home.contact*') ? 'navigation__link_active' : '' }}">Contact</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -410,10 +410,10 @@
               <a href="{{ route('cart.index') }}" class="navigation__link {{ request()->routeIs('cart.*') ? 'navigation__link_active' : '' }}">Cart</a>
             </li>
             <li class="navigation__item">
-              <a href="about.html" class="navigation__link">About</a>
+              <a href="{{ route('home.about') }}" class="navigation__link {{ request()->routeIs('home.about') ? 'navigation__link_active' : '' }}">About</a>
             </li>
             <li class="navigation__item">
-              <a href="contact.html" class="navigation__link">Contact</a>
+              <a href="{{ route('home.contact') }}" class="navigation__link {{ request()->routeIs('home.contact*') ? 'navigation__link_active' : '' }}">Contact</a>
             </li>
           </ul>
         </nav>
@@ -510,7 +510,8 @@
 
     <!-- Area Konten Utama -->
     <main>
-        {{ $slot }}
+        {{ $slot ?? '' }}
+        @yield('content')
     </main>
 
 
@@ -528,9 +529,9 @@
               </div>
             </a>
           </div>
-          <p class="footer-address">123 Beach Avenue, Surfside City, CA 00000</p>
-          <p class="m-0"><strong class="fw-medium">contact@surfsidemedia.in</strong></p>
-          <p><strong class="fw-medium">+1 000-000-0000</strong></p>
+          <p class="footer-address">Jl. Kaliurang KM 5.5 No. 42, Sleman, D.I. Yogyakarta 55281</p>
+          <p class="m-0"><strong class="fw-medium">hello@matcha.com</strong></p>
+          <p><strong class="fw-medium">+62 812-3456-7890</strong></p>
 
           <ul class="social-links list-unstyled d-flex flex-wrap mb-0">
             <li>
@@ -580,22 +581,20 @@
         <div class="footer-column footer-menu mb-4 mb-lg-0">
           <h6 class="sub-menu__title text-uppercase">Company</h6>
           <ul class="sub-menu__list list-unstyled">
-            <li class="sub-menu__item"><a href="about-2.html" class="menu-link menu-link_us-s">About Us</a></li>
-            <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Careers</a></li>
-            <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Affiliates</a></li>
-            <li class="sub-menu__item"><a href="blog_list1.html" class="menu-link menu-link_us-s">Blog</a></li>
-            <li class="sub-menu__item"><a href="contact-2.html" class="menu-link menu-link_us-s">Contact Us</a></li>
+            <li class="sub-menu__item"><a href="{{ route('home.about') }}" class="menu-link menu-link_us-s">About Us</a></li>
+            <li class="sub-menu__item"><a href="{{ route('shop.index') }}" class="menu-link menu-link_us-s">Katalog Produk</a></li>
+            <li class="sub-menu__item"><a href="{{ route('cart.index') }}" class="menu-link menu-link_us-s">Keranjang Belanja</a></li>
+            <li class="sub-menu__item"><a href="{{ route('home.contact') }}" class="menu-link menu-link_us-s">Contact Us</a></li>
           </ul>
         </div>
 
         <div class="footer-column footer-menu mb-4 mb-lg-0">
           <h6 class="sub-menu__title text-uppercase">Shop</h6>
           <ul class="sub-menu__list list-unstyled">
-            <li class="sub-menu__item"><a href="shop2.html" class="menu-link menu-link_us-s">New Arrivals</a></li>
-            <li class="sub-menu__item"><a href="shop3.html" class="menu-link menu-link_us-s">Accessories</a></li>
-            <li class="sub-menu__item"><a href="shop4.html" class="menu-link menu-link_us-s">Men</a></li>
-            <li class="sub-menu__item"><a href="shop5.html" class="menu-link menu-link_us-s">Women</a></li>
-            <li class="sub-menu__item"><a href="shop1.html" class="menu-link menu-link_us-s">Shop All</a></li>
+            <li class="sub-menu__item"><a href="{{ route('shop.index', ['categories' => 1]) }}" class="menu-link menu-link_us-s">Matcha Powder</a></li>
+            <li class="sub-menu__item"><a href="{{ route('shop.index', ['categories' => 2]) }}" class="menu-link menu-link_us-s">Tea Accessories</a></li>
+            <li class="sub-menu__item"><a href="{{ route('shop.index', ['categories' => 3]) }}" class="menu-link menu-link_us-s">Muslimah Fashion</a></li>
+            <li class="sub-menu__item"><a href="{{ route('shop.index') }}" class="menu-link menu-link_us-s">Semua Koleksi</a></li>
           </ul>
         </div>
 

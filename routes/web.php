@@ -12,6 +12,9 @@ use App\Http\Controllers\CouponController;
 
 /* Rute untuk Halaman Utama (Beranda/Home) */
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/about', [HomeController::class, 'about'])->name('home.about');
+Route::get('/contact', [HomeController::class, 'contact'])->name('home.contact');
+Route::post('/contact', [HomeController::class, 'contact_store'])->name('home.contact.store');
 
 // Storefront Shop Routes (Video 26 - 32)
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
