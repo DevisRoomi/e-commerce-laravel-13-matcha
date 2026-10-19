@@ -24,3 +24,4 @@ Homestead.yaml
 Thumbs.db
 *.sqlite
 laravel-13-ecommerce
+/public/assets/images_backup

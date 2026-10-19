@@ -148,3 +148,25 @@ h1, h2, h3, h4, h5, h6, .pc__title a, .section-title, .menu-link, .navigation__l
 .products-carousel__prev svg, .products-carousel__next svg, .slideshow-pagination {
     color: var(--bs-primary) !important;
 }
+
+/* 6. Tombol Utama (Btn Primary) & Form Tema Matcha */
+.btn-primary {
+    background-color: var(--bs-primary) !important;
+    border-color: var(--bs-primary) !important;
+    color: #FAF9F6 !important;
+    transition: all 0.3s ease;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    background-color: var(--bs-secondary) !important;
+    border-color: var(--bs-secondary) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(49, 82, 44, 0.25) !important;
+}
+.nav-link_underscore.active {
+    color: var(--bs-primary) !important;
+    border-bottom: 2px solid var(--bs-primary) !important;
+}
+.form-floating>.form-control:focus, .form-control:focus {
+    border-color: var(--bs-primary) !important;
+    box-shadow: 0 0 0 0.25rem rgba(49, 82, 44, 0.15) !important;
+}

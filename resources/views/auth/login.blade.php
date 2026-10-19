@@ -1,47 +1,66 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<x-app-layout>
+  <main class="pt-90">
+    <div class="mb-4 pb-4"></div>
+    <section class="login-register container">
+      <ul class="nav nav-tabs mb-5" id="login_register" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link nav-link_underscore active" id="login-tab" data-bs-toggle="tab" href="#tab-item-login"
+            role="tab" aria-controls="tab-item-login" aria-selected="true">Masuk / Login</a>
+        </li>
+      </ul>
+      <div class="tab-content pt-2" id="login_register_tab_content">
+        <div class="tab-pane fade show active" id="tab-item-login" role="tabpanel" aria-labelledby="login-tab">
+          <div class="login-form">
+            <form method="POST" action="{{ route('login') }}" name="login-form" class="needs-validation" novalidate="">
+              @csrf
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+              <!-- Session Status -->
+              <x-auth-session-status class="mb-4" :status="session('status')" />
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+              <div class="form-floating mb-3">
+                <input class="form-control form-control_gray @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email"
+                  autofocus id="email" type="email" placeholder="nama@email.com">
+                <label for="email">Alamat Email *</label>
+                @error('email')
+                  <span class="text-danger fs-12 mt-1 d-block" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+              </div>
+
+              <div class="pb-3"></div>
+
+              <div class="form-floating mb-3">
+                <input id="password" type="password" class="form-control form-control_gray @error('password') is-invalid @enderror" name="password" required
+                  autocomplete="current-password" placeholder="Password">
+                <label for="password">Kata Sandi *</label>
+                @error('password')
+                  <span class="text-danger fs-12 mt-1 d-block" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+              </div>
+
+              <div class="d-flex align-items-center mb-3 pb-2">
+                <div class="form-check mb-0">
+                  <input name="remember" class="form-check-input form-check-input_fill" type="checkbox" id="remember_me">
+                  <label class="form-check-label text-secondary" for="remember_me">Ingat saya</label>
+                </div>
+                @if (Route::has('password.request'))
+                  <a href="{{ route('password.request') }}" class="btn-text ms-auto text-secondary">Lupa kata sandi?</a>
+                @endif
+              </div>
+
+              <button class="btn btn-primary w-100 text-uppercase py-3 fw-bold" type="submit">Masuk</button>
+
+              <div class="customer-option mt-4 text-center">
+                <span class="text-secondary">Belum punya akun?</span>
+                <a href="{{ route('register') }}" class="btn-text fw-bold text-success ms-1">Daftar Akun Baru</a>
+              </div>
+            </form>
+          </div>
         </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+      </div>
+    </section>
+  </main>
+</x-app-layout>
