@@ -99,12 +99,30 @@
                                     <input type="checkbox" id="select-all" class="w-4 h-4 rounded text-primary focus:ring-primary border-gray-300 cursor-pointer">
                                 </th>
                                 <th class="px-4 py-4">ID</th>
-                                <th class="px-6 py-4">Produk</th>
+                                <th class="px-6 py-4">
+                                    <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'name', 'sort_order' => request('sort_by') === 'name' && request('sort_order') === 'asc' ? 'desc' : 'asc']) }}"
+                                       class="flex items-center gap-1.5 hover:text-primary transition">
+                                        <span>Produk</span>
+                                        <i class="fa-solid {{ request('sort_by') === 'name' ? (request('sort_order') === 'asc' ? 'fa-sort-up text-primary' : 'fa-sort-down text-primary') : 'fa-sort text-gray-400' }} text-xs"></i>
+                                    </a>
+                                </th>
                                 <th class="px-6 py-4">SKU</th>
                                 <th class="px-6 py-4">Kategori</th>
                                 <th class="px-6 py-4">Merek</th>
-                                <th class="px-6 py-4">Harga</th>
-                                <th class="px-6 py-4 text-center">Stok</th>
+                                <th class="px-6 py-4">
+                                    <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'regular_price', 'sort_order' => request('sort_by') === 'regular_price' && request('sort_order') === 'asc' ? 'desc' : 'asc']) }}"
+                                       class="flex items-center gap-1.5 hover:text-primary transition">
+                                        <span>Harga</span>
+                                        <i class="fa-solid {{ request('sort_by') === 'regular_price' ? (request('sort_order') === 'asc' ? 'fa-sort-up text-primary' : 'fa-sort-down text-primary') : 'fa-sort text-gray-400' }} text-xs"></i>
+                                    </a>
+                                </th>
+                                <th class="px-6 py-4 text-center">
+                                    <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'quantity', 'sort_order' => request('sort_by') === 'quantity' && request('sort_order') === 'asc' ? 'desc' : 'asc']) }}"
+                                       class="flex items-center justify-center gap-1.5 hover:text-primary transition">
+                                        <span>Stok</span>
+                                        <i class="fa-solid {{ request('sort_by') === 'quantity' ? (request('sort_order') === 'asc' ? 'fa-sort-up text-primary' : 'fa-sort-down text-primary') : 'fa-sort text-gray-400' }} text-xs"></i>
+                                    </a>
+                                </th>
                                 <th class="px-6 py-4 text-center">Status</th>
                                 <th class="px-6 py-4 text-right">Aksi</th>
                             </tr>

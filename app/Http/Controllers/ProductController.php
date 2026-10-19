@@ -46,7 +46,19 @@ class ProductController extends Controller
             $query->where('status', $request->status);
         }
 
-        $products = $query->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
+        // Sorting (Video 25)
+        $sort_by = $request->query('sort_by', 'created_at');
+        $sort_order = $request->query('sort_order', 'desc');
+
+        $allowed_sort_columns = ['name', 'regular_price', 'quantity', 'created_at'];
+        if (!in_array($sort_by, $allowed_sort_columns)) {
+            $sort_by = 'created_at';
+        }
+        if (!in_array(strtolower($sort_order), ['asc', 'desc'])) {
+            $sort_order = 'desc';
+        }
+
+        $products = $query->orderBy($sort_by, $sort_order)->paginate(10)->withQueryString();
 
         return view('admin.products', compact('products', 'categories', 'brands'));
     }
