@@ -16,51 +16,59 @@
 
         <!-- Quick Stats Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <!-- Card 1: Total Orders -->
-            <div class="bg-white p-5 rounded-2xl border border-emerald-100 shadow-sm flex items-center justify-between">
-                <div>
-                    <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Total Pesanan</p>
-                    <h3 class="text-2xl font-extrabold text-primary mt-1">0</h3>
-                    <p class="text-xs text-emerald-600 mt-1 font-medium"><i class="fa-solid fa-arrow-trend-up"></i> Baru mulai</p>
-                </div>
-                <div class="w-12 h-12 rounded-2xl bg-matchaLight text-primary flex items-center justify-center text-xl shadow-inner">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                </div>
-            </div>
-
-            <!-- Card 2: Total Revenue -->
-            <div class="bg-white p-5 rounded-2xl border border-emerald-100 shadow-sm flex items-center justify-between">
-                <div>
-                    <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Pendapatan</p>
-                    <h3 class="text-2xl font-extrabold text-primary mt-1">Rp 0</h3>
-                    <p class="text-xs text-emerald-600 mt-1 font-medium"><i class="fa-solid fa-chart-line"></i> Toko online siap</p>
-                </div>
-                <div class="w-12 h-12 rounded-2xl bg-matchaLight text-primary flex items-center justify-center text-xl shadow-inner">
-                    <i class="fa-solid fa-rupiah-sign"></i>
-                </div>
-            </div>
-
-            <!-- Card 3: Total Products -->
+            <!-- Card 1: Total Products -->
             <div class="bg-white p-5 rounded-2xl border border-emerald-100 shadow-sm flex items-center justify-between">
                 <div>
                     <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Total Produk</p>
-                    <h3 class="text-2xl font-extrabold text-primary mt-1">8</h3>
-                    <p class="text-xs text-emerald-600 mt-1 font-medium">Koleksi Matcha</p>
+                    <h3 class="text-2xl font-extrabold text-primary mt-1">{{ $total_products }}</h3>
+                    <a href="{{ route('admin.products') }}" class="text-xs text-emerald-600 mt-1 font-medium hover:underline inline-flex items-center gap-1">
+                        <span>Kelola Produk</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </a>
                 </div>
                 <div class="w-12 h-12 rounded-2xl bg-matchaLight text-primary flex items-center justify-center text-xl shadow-inner">
                     <i class="fa-solid fa-boxes-stacked"></i>
                 </div>
             </div>
 
-            <!-- Card 4: Customers -->
+            <!-- Card 2: Total Categories -->
             <div class="bg-white p-5 rounded-2xl border border-emerald-100 shadow-sm flex items-center justify-between">
                 <div>
-                    <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Pelanggan</p>
-                    <h3 class="text-2xl font-extrabold text-primary mt-1">1</h3>
-                    <p class="text-xs text-emerald-600 mt-1 font-medium">User terdaftar</p>
+                    <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Kategori</p>
+                    <h3 class="text-2xl font-extrabold text-primary mt-1">{{ $total_categories }}</h3>
+                    <a href="{{ route('admin.categories') }}" class="text-xs text-emerald-600 mt-1 font-medium hover:underline inline-flex items-center gap-1">
+                        <span>Kelola Kategori</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </a>
                 </div>
                 <div class="w-12 h-12 rounded-2xl bg-matchaLight text-primary flex items-center justify-center text-xl shadow-inner">
-                    <i class="fa-solid fa-user-group"></i>
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+            </div>
+
+            <!-- Card 3: Total Brands -->
+            <div class="bg-white p-5 rounded-2xl border border-emerald-100 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Merek / Brands</p>
+                    <h3 class="text-2xl font-extrabold text-primary mt-1">{{ $total_brands }}</h3>
+                    <a href="{{ route('admin.brands') }}" class="text-xs text-emerald-600 mt-1 font-medium hover:underline inline-flex items-center gap-1">
+                        <span>Kelola Merek</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-matchaLight text-primary flex items-center justify-center text-xl shadow-inner">
+                    <i class="fa-solid fa-tag"></i>
+                </div>
+            </div>
+
+            <!-- Card 4: Customers & Coupons -->
+            <div class="bg-white p-5 rounded-2xl border border-emerald-100 shadow-sm flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Kupon Aktif</p>
+                    <h3 class="text-2xl font-extrabold text-primary mt-1">{{ $total_coupons }}</h3>
+                    <a href="{{ route('admin.coupons') }}" class="text-xs text-emerald-600 mt-1 font-medium hover:underline inline-flex items-center gap-1">
+                        <span>Lihat Kupon</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-matchaLight text-primary flex items-center justify-center text-xl shadow-inner">
+                    <i class="fa-solid fa-ticket"></i>
                 </div>
             </div>
         </div>

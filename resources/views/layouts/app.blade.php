@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/swiper.min.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css" />
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Scripts Bawaan Laravel -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -268,8 +268,9 @@
       </a>
 
       <div class="logo">
-        <a href="index.html">
-          <img src="{{ asset('assets/images/logo.png') }}" alt="Uomo" class="logo__image d-block" />
+        <a href="{{ route('home.index') }}" class="d-flex align-items-center gap-2 text-decoration-none">
+          <span class="fs-4">🍵</span>
+          <span class="fw-bold fs-16 text-uppercase" style="color: #31522C; font-family: 'Playfair Display', serif; letter-spacing: 1px;">MATCHA ATELIER</span>
         </a>
       </div>
 
@@ -284,10 +285,10 @@
     <nav
       class="header-mobile__navigation navigation d-flex flex-column w-100 position-absolute top-100 bg-body overflow-auto">
       <div class="container">
-        <form action="#" method="GET" class="search-field position-relative mt-4 mb-3">
+        <form action="{{ route('shop.index') }}" method="GET" class="search-field position-relative mt-4 mb-3">
           <div class="position-relative">
-            <input class="search-field__input w-100 border rounded-1" type="text" name="search-keyword"
-              placeholder="Search products" />
+            <input class="search-field__input w-100 border rounded-1" type="text" name="search"
+              placeholder="Cari produk matcha..." value="{{ request('search') }}" />
             <button class="btn-icon search-popup__submit pb-0 me-2" type="submit">
               <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
@@ -388,8 +389,12 @@
     <div class="container">
       <div class="header-desk header-desk_type_1">
         <div class="logo">
-          <a href="index.html">
-            <img src="{{ asset('assets/images/logo.png') }}" alt="Uomo" class="logo__image d-block" />
+          <a href="{{ route('home.index') }}" class="d-flex align-items-center gap-2 text-decoration-none">
+            <span class="fs-2">🍵</span>
+            <div class="d-flex flex-column">
+              <span class="fw-bold fs-18 text-uppercase" style="color: #31522C; font-family: 'Playfair Display', serif; letter-spacing: 1px;">MATCHA ATELIER</span>
+              <small class="fs-10 text-muted" style="letter-spacing: 2px;">PURE & MODEST</small>
+            </div>
           </a>
         </div>
 
@@ -426,11 +431,11 @@
             </div>
 
             <div class="search-popup js-hidden-content">
-              <form action="#" method="GET" class="search-field container">
-                <p class="text-uppercase text-secondary fw-medium mb-4">What are you looking for?</p>
+              <form action="{{ route('shop.index') }}" method="GET" class="search-field container">
+                <p class="text-uppercase text-secondary fw-medium mb-4">Cari Produk Matcha Pilihan Anda</p>
                 <div class="position-relative">
                   <input class="search-field__input search-popup__input w-100 fw-medium" type="text"
-                    name="search-keyword" placeholder="Search products" />
+                    name="search" placeholder="Ketik nama produk, SKU, atau kategori..." value="{{ request('search') }}" />
                   <button class="btn-icon search-popup__submit" type="submit">
                     <svg class="d-block" width="20" height="20" viewBox="0 0 20 20" fill="none"
                       xmlns="http://www.w3.org/2000/svg">
@@ -514,9 +519,13 @@
     <div class="footer-middle container">
       <div class="row row-cols-lg-5 row-cols-2">
         <div class="footer-column footer-store-info col-12 mb-4 mb-lg-0">
-          <div class="logo">
-            <a href="index.html">
-              <img src="{{ asset('assets/images/logo.png') }}" alt="SurfsideMedia" class="logo__image d-block" />
+          <div class="logo mb-3">
+            <a href="{{ route('home.index') }}" class="d-flex align-items-center gap-2 text-decoration-none">
+              <span class="fs-2">🍵</span>
+              <div class="d-flex flex-column">
+                <span class="fw-bold fs-18 text-uppercase text-white" style="font-family: 'Playfair Display', serif; letter-spacing: 1px;">MATCHA ATELIER</span>
+                <small class="fs-10 text-white-50" style="letter-spacing: 2px;">PURE & MODEST</small>
+              </div>
             </a>
           </div>
           <p class="footer-address">123 Beach Avenue, Surfside City, CA 00000</p>

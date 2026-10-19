@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Product;
+use App\Models\Coupon;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Laravel\Facades\Image;
@@ -14,7 +17,19 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.index');
+        $total_products = Product::count();
+        $total_categories = Category::count();
+        $total_brands = Brand::count();
+        $total_coupons = Coupon::count();
+        $total_customers = User::where('utype', 'USR')->count();
+
+        return view('admin.index', compact(
+            'total_products',
+            'total_categories',
+            'total_brands',
+            'total_coupons',
+            'total_customers'
+        ));
     }
 
     public function brands(Request $request)

@@ -160,7 +160,7 @@
             </header>
 
             <!-- Main Content Area -->
-            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-[#F4F7EE] p-6">
+            <main class="flex-1 min-w-0 overflow-x-auto overflow-y-auto bg-[#F4F7EE] p-6">
                 {{ $slot }}
             </main>
 

@@ -90,124 +90,123 @@
         <form id="bulk-action-form" action="{{ route('admin.products.bulk.delete') }}" method="POST">
             @csrf
             @method('DELETE')
-            <div id="printableArea" class="bg-white rounded-2xl shadow-sm border border-emerald-100 overflow-hidden">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-sm text-gray-600">
-                        <thead class="bg-matchaLight/50 text-gray-700 text-xs uppercase font-bold border-b border-emerald-100">
-                            <tr>
-                                <th class="px-4 py-4 w-10 text-center">
-                                    <input type="checkbox" id="select-all" class="w-4 h-4 rounded text-primary focus:ring-primary border-gray-300 cursor-pointer">
-                                </th>
-                                <th class="px-4 py-4">ID</th>
-                                <th class="px-6 py-4">
-                                    <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'name', 'sort_order' => request('sort_by') === 'name' && request('sort_order') === 'asc' ? 'desc' : 'asc']) }}"
-                                       class="flex items-center gap-1.5 hover:text-primary transition">
-                                        <span>Produk</span>
-                                        <i class="fa-solid {{ request('sort_by') === 'name' ? (request('sort_order') === 'asc' ? 'fa-sort-up text-primary' : 'fa-sort-down text-primary') : 'fa-sort text-gray-400' }} text-xs"></i>
-                                    </a>
-                                </th>
-                                <th class="px-6 py-4">SKU</th>
-                                <th class="px-6 py-4">Kategori</th>
-                                <th class="px-6 py-4">Merek</th>
-                                <th class="px-6 py-4">
-                                    <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'regular_price', 'sort_order' => request('sort_by') === 'regular_price' && request('sort_order') === 'asc' ? 'desc' : 'asc']) }}"
-                                       class="flex items-center gap-1.5 hover:text-primary transition">
-                                        <span>Harga</span>
-                                        <i class="fa-solid {{ request('sort_by') === 'regular_price' ? (request('sort_order') === 'asc' ? 'fa-sort-up text-primary' : 'fa-sort-down text-primary') : 'fa-sort text-gray-400' }} text-xs"></i>
-                                    </a>
-                                </th>
-                                <th class="px-6 py-4 text-center">
-                                    <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'quantity', 'sort_order' => request('sort_by') === 'quantity' && request('sort_order') === 'asc' ? 'desc' : 'asc']) }}"
-                                       class="flex items-center justify-center gap-1.5 hover:text-primary transition">
-                                        <span>Stok</span>
-                                        <i class="fa-solid {{ request('sort_by') === 'quantity' ? (request('sort_order') === 'asc' ? 'fa-sort-up text-primary' : 'fa-sort-down text-primary') : 'fa-sort text-gray-400' }} text-xs"></i>
-                                    </a>
-                                </th>
-                                <th class="px-6 py-4 text-center">Status</th>
-                                <th class="px-6 py-4 text-right">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-100">
-                            @forelse($products as $product)
-                                <tr class="hover:bg-matchaCream/50 transition">
-                                    <td class="px-4 py-4 text-center">
-                                        <input type="checkbox" name="ids[]" value="{{ $product->id }}" class="product-checkbox w-4 h-4 rounded text-primary focus:ring-primary border-gray-300 cursor-pointer">
-                                    </td>
-                                    <td class="px-4 py-4 font-bold text-gray-700">#{{ $product->id }}</td>
-                                    <td class="px-6 py-4">
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-12 h-12 rounded-xl bg-gray-50 border border-gray-100 p-1 flex items-center justify-center overflow-hidden shrink-0">
+            <div id="printableArea" class="bg-white rounded-2xl shadow-sm border border-emerald-100 overflow-x-auto">
+                <table class="w-full text-left text-sm text-gray-600 min-w-[1050px]">
+                    <thead class="bg-matchaLight/50 text-gray-700 text-xs uppercase font-bold border-b border-emerald-100">
+                        <tr>
+                            <th class="p-3 w-8 text-center">
+                                <input type="checkbox" id="select-all" class="w-4 h-4 rounded text-primary focus:ring-primary border-gray-300 cursor-pointer">
+                            </th>
+                            <th class="p-3 w-10">ID</th>
+                            <th class="p-3 min-w-[240px]">
+                                <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'name', 'sort_order' => request('sort_by') === 'name' && request('sort_order') === 'asc' ? 'desc' : 'asc']) }}"
+                                   class="flex items-center gap-1 hover:text-primary transition">
+                                    <span>Produk</span>
+                                    <i class="fa-solid {{ request('sort_by') === 'name' ? (request('sort_order') === 'asc' ? 'fa-sort-up text-primary' : 'fa-sort-down text-primary') : 'fa-sort text-gray-400' }} text-xs"></i>
+                                </a>
+                            </th>
+                            <th class="p-3 whitespace-nowrap">SKU</th>
+                            <th class="p-3 whitespace-nowrap">Kategori</th>
+                            <th class="p-3 whitespace-nowrap">Merek</th>
+                            <th class="p-3 whitespace-nowrap">
+                                <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'regular_price', 'sort_order' => request('sort_by') === 'regular_price' && request('sort_order') === 'asc' ? 'desc' : 'asc']) }}"
+                                   class="flex items-center gap-1 hover:text-primary transition">
+                                    <span>Harga</span>
+                                    <i class="fa-solid {{ request('sort_by') === 'regular_price' ? (request('sort_order') === 'asc' ? 'fa-sort-up text-primary' : 'fa-sort-down text-primary') : 'fa-sort text-gray-400' }} text-xs"></i>
+                                </a>
+                            </th>
+                            <th class="p-3 text-center whitespace-nowrap">
+                                <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'quantity', 'sort_order' => request('sort_by') === 'quantity' && request('sort_order') === 'asc' ? 'desc' : 'asc']) }}"
+                                   class="flex items-center justify-center gap-1 hover:text-primary transition">
+                                    <span>Stok</span>
+                                    <i class="fa-solid {{ request('sort_by') === 'quantity' ? (request('sort_order') === 'asc' ? 'fa-sort-up text-primary' : 'fa-sort-down text-primary') : 'fa-sort text-gray-400' }} text-xs"></i>
+                                </a>
+                            </th>
+                            <th class="p-3 text-center whitespace-nowrap">Status</th>
+                            <th class="p-3 text-right whitespace-nowrap min-w-[90px]">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        @forelse($products as $product)
+                            <tr class="hover:bg-matchaCream/50 transition">
+                                <td class="p-3 text-center">
+                                    <input type="checkbox" name="ids[]" value="{{ $product->id }}" class="product-checkbox w-4 h-4 rounded text-primary focus:ring-primary border-gray-300 cursor-pointer">
+                                </td>
+                                <td class="p-3 font-bold text-gray-700">#{{ $product->id }}</td>
+                                <td class="p-3 min-w-[240px]">
+                                    <div class="flex items-center gap-2.5">
+                                        <div class="w-10 h-10 rounded-lg bg-gray-50 border border-gray-100 p-1 flex items-center justify-center overflow-hidden shrink-0">
                                             @if($product->image)
                                                 <img src="{{ asset('uploads/products/thumbnails/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-contain">
                                             @else
-                                                <i class="fa-solid fa-box text-emerald-600 text-lg"></i>
+                                                <i class="fa-solid fa-box text-emerald-600 text-base"></i>
                                             @endif
                                         </div>
-                                        <div>
-                                            <p class="font-bold text-gray-900">{{ $product->name }}</p>
+                                        <div class="min-w-0">
+                                            <p class="font-bold text-gray-900 leading-snug text-xs sm:text-sm">{{ $product->name }}</p>
                                             @if($product->featured)
-                                                <span class="inline-flex items-center gap-1 text-[10px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md mt-0.5">
-                                                    <i class="fa-solid fa-star text-[9px] text-amber-500"></i> Unggulan
+                                                <span class="inline-flex items-center gap-1 text-[10px] font-bold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded mt-0.5">
+                                                    <i class="fa-solid fa-star text-[8px] text-amber-500"></i> Unggulan
                                                 </span>
                                             @endif
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 font-mono text-xs text-gray-500">{{ $product->SKU }}</td>
-                                <td class="px-6 py-4 text-xs font-semibold text-gray-700">
-                                    {{ $product->category?->name ?? '—' }}
-                                </td>
-                                <td class="px-6 py-4 text-xs font-semibold text-gray-700">
-                                    {{ $product->brand?->name ?? '—' }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    @if($product->sale_price)
-                                        <div class="flex flex-col">
-                                            <span class="font-bold text-emerald-800">Rp {{ number_format($product->sale_price, 0, ',', '.') }}</span>
-                                            <span class="text-xs text-gray-400 line-through">Rp {{ number_format($product->regular_price, 0, ',', '.') }}</span>
+                                    <td class="p-3 font-mono text-xs text-gray-500 whitespace-nowrap">{{ $product->SKU }}</td>
+                                    <td class="p-3 text-xs font-semibold text-gray-700 whitespace-nowrap">
+                                        {{ $product->category?->name ?? '—' }}
+                                    </td>
+                                    <td class="p-3 text-xs font-semibold text-gray-700 whitespace-nowrap">
+                                        {{ $product->brand?->name ?? '—' }}
+                                    </td>
+                                    <td class="p-3 whitespace-nowrap">
+                                        @if($product->sale_price)
+                                            <div class="flex flex-col">
+                                                <span class="font-bold text-emerald-800 text-xs">Rp {{ number_format($product->sale_price, 0, ',', '.') }}</span>
+                                                <span class="text-[11px] text-gray-400 line-through">Rp {{ number_format($product->regular_price, 0, ',', '.') }}</span>
+                                            </div>
+                                        @else
+                                            <span class="font-bold text-gray-800 text-xs">Rp {{ number_format($product->regular_price, 0, ',', '.') }}</span>
+                                        @endif
+                                    </td>
+                                    <td class="p-3 text-center whitespace-nowrap">
+                                        @if($product->stock_status === 'instock')
+                                            <span class="inline-block px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-800">
+                                                Tersedia ({{ $product->quantity }})
+                                            </span>
+                                        @else
+                                            <span class="inline-block px-2 py-0.5 rounded-full text-[11px] font-semibold bg-red-100 text-red-700">
+                                                Habis
+                                            </span>
+                                        @endif
+                                    </td>
+                                    <td class="p-3 text-center whitespace-nowrap">
+                                        @if($product->status)
+                                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-800">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Tayang
+                                            </span>
+                                        @else
+                                            <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-gray-100 text-gray-600">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-gray-400"></span> Draft
+                                            </span>
+                                        @endif
+                                    </td>
+                                    <td class="p-3 text-right whitespace-nowrap">
+                                        <div class="flex items-center justify-end gap-1.5">
+                                            <a href="{{ route('admin.product.edit', ['id' => $product->id]) }}" class="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-800 hover:bg-emerald-100 flex items-center justify-center transition" title="Edit">
+                                                <i class="fa-solid fa-pen-to-square text-xs"></i>
+                                            </a>
+                                            <form action="{{ route('admin.product.delete', ['id' => $product->id]) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus produk {{ $product->name }}?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="w-7 h-7 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 flex items-center justify-center transition" title="Hapus">
+                                                    <i class="fa-solid fa-trash text-xs"></i>
+                                                </button>
+                                            </form>
                                         </div>
-                                    @else
-                                        <span class="font-bold text-gray-800">Rp {{ number_format($product->regular_price, 0, ',', '.') }}</span>
-                                    @endif
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    @if($product->stock_status === 'instock')
-                                        <span class="inline-block px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
-                                            Tersedia ({{ $product->quantity }})
-                                        </span>
-                                    @else
-                                        <span class="inline-block px-2.5 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-700">
-                                            Habis
-                                        </span>
-                                    @endif
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    @if($product->status)
-                                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
-                                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Tayang
-                                        </span>
-                                    @else
-                                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-600">
-                                            <span class="w-1.5 h-1.5 rounded-full bg-gray-400"></span> Draft
-                                        </span>
-                                    @endif
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <div class="flex items-center justify-end gap-2">
-                                        <a href="{{ route('admin.product.edit', ['id' => $product->id]) }}" class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-800 hover:bg-emerald-100 flex items-center justify-center transition" title="Edit">
-                                            <i class="fa-solid fa-pen-to-square text-xs"></i>
-                                        </a>
-                                        <form action="{{ route('admin.product.delete', ['id' => $product->id]) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus produk {{ $product->name }}?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="w-8 h-8 rounded-lg bg-red-50 text-red-600 hover:bg-red-100 flex items-center justify-center transition" title="Hapus">
-                                                <i class="fa-solid fa-trash text-xs"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
+                                    </td>
+                                </tr>
+                            @empty
                             <tr>
                                 <td colspan="10" class="px-6 py-12 text-center text-gray-400">
                                     <i class="fa-solid fa-boxes-stacked text-3xl mb-2 text-gray-300"></i>

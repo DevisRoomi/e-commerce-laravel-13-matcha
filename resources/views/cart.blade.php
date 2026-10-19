@@ -110,7 +110,7 @@
                         </td>
 
                         <!-- Subtotal -->
-                        <td class="py-3 text-end fw-bold text-success">
+                        <td class="py-3 text-end fw-bold fs-15" style="color: #31522C !important;">
                           Rp {{ number_format($item['subtotal'], 0, ',', '.') }}
                         </td>
 
@@ -119,8 +119,8 @@
                           <form action="{{ route('cart.remove', ['rowId' => $item['rowId']]) }}" method="POST" onsubmit="return confirm('Hapus produk ini dari keranjang?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm text-danger border-0 p-1" title="Hapus Item">
-                              <i class="fa-solid fa-trash-can fs-6"></i>
+                            <button type="submit" class="btn btn-sm px-2.5 py-1.5 rounded-2 shadow-sm font-bold" style="background-color: #fee2e2; color: #dc2626 !important; border: 1px solid #fca5a5 !important;" title="Hapus Item">
+                              <i class="fa-solid fa-trash-can"></i>
                             </button>
                           </form>
                         </td>
@@ -138,7 +138,7 @@
                 <form action="{{ route('cart.empty') }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin mengosongkan seluruh keranjang belanja?');">
                   @csrf
                   @method('DELETE')
-                  <button type="submit" class="btn btn-sm btn-outline-danger fw-semibold">
+                  <button type="submit" class="btn btn-sm px-3 py-1.5 rounded-2 fw-bold shadow-sm" style="background-color: #fee2e2; color: #dc2626 !important; border: 1px solid #fca5a5 !important;">
                     <i class="fa-solid fa-trash me-1"></i> Kosongkan Keranjang
                   </button>
                 </form>
@@ -155,18 +155,18 @@
               <div class="mb-4">
                 <label class="fs-12 fw-bold text-secondary mb-1">Punya Kupon Promo?</label>
                 @if($coupon)
-                  <div class="p-2.5 rounded-2 d-flex justify-content-between align-items-center" style="background-color: #EEF3DF; border: 1px dashed var(--bs-primary);">
-                    <div>
-                      <span class="badge bg-success font-monospace">{{ $coupon['code'] }}</span>
-                      <small class="d-block text-success fw-bold mt-1">
-                        Diskon: {{ $coupon['type'] === 'percent' ? $coupon['value'] . '%' : 'Rp ' . number_format($coupon['value'], 0, ',', '.') }}
-                      </small>
+                  <div class="p-3 rounded-3 d-flex justify-content-between align-items-center bg-white border border-2 shadow-sm" style="border-color: var(--bs-primary) !important;">
+                    <div class="d-flex align-items-center gap-2">
+                      <span class="badge font-monospace fs-12 px-2 py-1 text-white" style="background-color: var(--bs-primary) !important;">{{ $coupon['code'] }}</span>
+                      <span class="fs-12 fw-bold text-dark">
+                        -{{ $coupon['type'] === 'percent' ? (float)$coupon['value'] . '%' : 'Rp ' . number_format($coupon['value'], 0, ',', '.') }}
+                      </span>
                     </div>
-                    <form action="{{ route('cart.coupon.remove') }}" method="POST">
+                    <form action="{{ route('cart.coupon.remove') }}" method="POST" class="m-0">
                       @csrf
                       @method('DELETE')
-                      <button type="submit" class="btn btn-sm text-danger p-0" title="Hapus Kupon">
-                        <i class="fa-solid fa-xmark fs-5"></i>
+                      <button type="submit" class="btn btn-sm btn-outline-danger py-0.5 px-2 text-danger fw-bold fs-11" title="Hapus Kupon">
+                        <i class="fa-solid fa-xmark"></i> Batal
                       </button>
                     </form>
                   </div>
@@ -187,9 +187,9 @@
                 </div>
 
                 @if($discount > 0)
-                  <div class="d-flex justify-content-between text-danger">
-                    <span>Diskon Kupon</span>
-                    <span class="fw-bold">- Rp {{ number_format($discount, 0, ',', '.') }}</span>
+                  <div class="d-flex justify-content-between fw-bold" style="color: #b91c1c !important;">
+                    <span>Diskon Kupon ({{ $coupon['code'] }})</span>
+                    <span>- Rp {{ number_format($discount, 0, ',', '.') }}</span>
                   </div>
                 @endif
 
@@ -212,9 +212,9 @@
               </div>
 
               <!-- Grand Total -->
-              <div class="d-flex justify-content-between align-items-baseline mb-4">
+              <div class="d-flex justify-content-between align-items-baseline mb-4 py-2 border-top border-2 border-emerald-700">
                 <span class="fw-bold text-dark fs-5">Total Tagihan</span>
-                <span class="fw-bold fs-4 text-success">Rp {{ number_format($total, 0, ',', '.') }}</span>
+                <span class="fw-extrabold fs-3" style="color: #31522C !important;">Rp {{ number_format($total, 0, ',', '.') }}</span>
               </div>
 
               <!-- Checkout Button -->
