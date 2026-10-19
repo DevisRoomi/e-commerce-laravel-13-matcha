@@ -130,8 +130,8 @@
                             <strong class="text-emerald-800">Matcha Green Palette</strong>
                         </li>
                         <li class="flex items-center justify-between">
-                            <span>Katalog Model:</span>
-                            <strong class="text-emerald-800">Muslimah / Modest</strong>
+                            <span>Katalog Produk:</span>
+                            <strong class="text-emerald-800">100% Pure Matcha & Utensils</strong>
                         </li>
                     </ul>
                 </div>

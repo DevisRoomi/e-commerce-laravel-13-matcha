@@ -393,7 +393,7 @@
             <span class="fs-2">🍵</span>
             <div class="d-flex flex-column">
               <span class="fw-bold fs-18 text-uppercase" style="color: #31522C; font-family: 'Playfair Display', serif; letter-spacing: 1px;">MATCHA ATELIER</span>
-              <small class="fs-10 text-muted" style="letter-spacing: 2px;">PURE & MODEST</small>
+              <small class="fs-10 text-muted" style="letter-spacing: 2px;">ARTISAN MATCHA & TEAS</small>
             </div>
           </a>
         </div>
@@ -525,7 +525,7 @@
               <span class="fs-2">🍵</span>
               <div class="d-flex flex-column">
                 <span class="fw-bold fs-18 text-uppercase text-white" style="font-family: 'Playfair Display', serif; letter-spacing: 1px;">MATCHA ATELIER</span>
-                <small class="fs-10 text-white-50" style="letter-spacing: 2px;">PURE & MODEST</small>
+                <small class="fs-10 text-white-50" style="letter-spacing: 2px;">ARTISAN MATCHA & TEAS</small>
               </div>
             </a>
           </div>
@@ -593,7 +593,7 @@
           <ul class="sub-menu__list list-unstyled">
             <li class="sub-menu__item"><a href="{{ route('shop.index', ['categories' => 1]) }}" class="menu-link menu-link_us-s">Matcha Powder</a></li>
             <li class="sub-menu__item"><a href="{{ route('shop.index', ['categories' => 2]) }}" class="menu-link menu-link_us-s">Tea Accessories</a></li>
-            <li class="sub-menu__item"><a href="{{ route('shop.index', ['categories' => 3]) }}" class="menu-link menu-link_us-s">Muslimah Fashion</a></li>
+            <li class="sub-menu__item"><a href="{{ route('shop.index', ['categories' => 3]) }}" class="menu-link menu-link_us-s">Saringan & Takaran</a></li>
             <li class="sub-menu__item"><a href="{{ route('shop.index') }}" class="menu-link menu-link_us-s">Semua Koleksi</a></li>
           </ul>
         </div>

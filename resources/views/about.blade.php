@@ -18,7 +18,7 @@
         Tentang <span style="color: #31522C;">Matcha Atelier</span>
       </h1>
       <p class="text-secondary fs-16 lead">
-        Menghadirkan ketenangan ritual teh hijau murni Kyoto berpadu dengan keanggunan busana muslimah berpalet warna alam yang teduh.
+        Menghadirkan ketenangan ritual teh hijau murni Kyoto berpadu dengan peralatan seduh chasen bambu dan chawan keramik artisanal.
       </p>
     </div>
 
@@ -34,12 +34,12 @@
         </div>
       </div>
       <div class="col-lg-6">
-        <h3 class="fw-bold text-dark mb-3">Harmoni Ketenangan Pikiran & Kesantunan Berbusana</h3>
+        <h3 class="fw-bold text-dark mb-3">Harmoni Ketenangan Pikiran & Tradisi Teh Jepang</h3>
         <p class="text-secondary lh-lg mb-4">
-          Matcha Atelier lahir dari kecintaan kami terhadap dua esensi keindahan: ketenangan ritual minum matcha khas Jepang yang menyejukkan jiwa, serta nilai kesantunan busana muslimah yang bersahaja dan bermartabat.
+          Matcha Atelier lahir dari dedikasi mendalam terhadap tradisi seni teh Jepang (Chado): ketenangan ritual menyeduh matcha yang menyejukkan jiwa serta keindahan peralatan kerajinan tangan para maestro Kyoto dan Mino.
         </p>
         <p class="text-secondary lh-lg mb-4">
-          Setiap gram bubuk matcha kami digiling secara lambat menggunakan batu granit tradisional demi menjaga kadar antioksidan EGCG, L-theanine, dan profil umami alaminya. Sementara lini busana kami dirancang dengan potongan longgar (loose-fit), bahan linen dingin, dan palet warna hijau matcha yang meneduhkan pandangan.
+          Setiap gram bubuk matcha kami digiling lambat menggunakan batu granit tradisional demi menjaga profil rasa umami manis alami dan kandungan antioksidan EGCG. Seluruh peralatan pendukung — mulai dari kocokan chasen 100 cabang bambu Takayama, mangkuk chawan berglasir alami, saringan stainless furui, hingga sendok takar chashaku — dipilih dengan standar mutu dan ketelitian tertinggi.
         </p>
         <div class="d-flex align-items-center gap-3 pt-2">
           <a href="{{ route('shop.index') }}" class="btn btn-primary px-4 py-2.5 fw-bold rounded-pill">
@@ -67,23 +67,23 @@
       </div>
       <div class="col-md-4">
         <div class="p-4 rounded-4 bg-white border border-emerald-100 shadow-sm h-100">
-          <div class="w-16 h-16 rounded-circle mx-auto d-flex align-items-center justify-center mb-3" style="width: 64px; height: 64px; background-color: #EEF3DF; color: #31522C;">
-            <i class="fa-solid fa-vest-patches fs-3"></i>
+          <div class="w-16 h-16 rounded-circle mx-auto d-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px; background-color: #EEF3DF; color: #31522C;">
+            <i class="fa-solid fa-mug-saucer fs-3"></i>
           </div>
-          <h5 class="fw-bold text-dark mb-2">Modest Muslimah Fashion</h5>
+          <h5 class="fw-bold text-dark mb-2">Alat Seduh Otentik</h5>
           <p class="text-secondary fs-14 mb-0">
-            Pashmina silk dan gamis abaya berpotongan syari yang sejuk, flowy, tidak menerawang, dan nyaman untuk aktivitas harian.
+            Chasen bambu Takayama 100 cabang, mangkuk chawan keramik Mino-yaki, saringan stainless furui, dan sendok chashaku alami.
           </p>
         </div>
       </div>
       <div class="col-md-4">
         <div class="p-4 rounded-4 bg-white border border-emerald-100 shadow-sm h-100">
-          <div class="w-16 h-16 rounded-circle mx-auto d-flex align-items-center justify-center mb-3" style="width: 64px; height: 64px; background-color: #EEF3DF; color: #31522C;">
+          <div class="w-16 h-16 rounded-circle mx-auto d-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px; background-color: #EEF3DF; color: #31522C;">
             <i class="fa-solid fa-hand-holding-heart fs-3"></i>
           </div>
-          <h5 class="fw-bold text-dark mb-2">Kualitas & Keberlanjutan</h5>
+          <h5 class="fw-bold text-dark mb-2">Kemitraan Petani Lokal</h5>
           <p class="text-secondary fs-14 mb-0">
-            Bermitra langsung dengan petani teh lokal Jepang dan penjahit muslimah terampil dengan standar etika kerja yang adil.
+            Bermitra langsung dengan perkebunan teh keluarga di Uji & Shizuoka serta pengrajin peralatan tradisional dengan prinsip perdagangan adil.
           </p>
         </div>
       </div>

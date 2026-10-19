@@ -38,17 +38,42 @@
               <h6 class="fw-bold mb-3 text-dark d-flex align-items-center gap-2">
                 <i class="fa-solid fa-layer-group text-success"></i> Kategori
               </h6>
-              <div class="d-flex flex-column gap-2" style="max-height: 220px; overflow-y: auto;">
+              <div class="d-flex flex-column gap-2.5" style="max-height: 300px; overflow-y: auto;">
                 @foreach($categories as $cat)
-                  <label class="form-check-label d-flex justify-content-between align-items-center cursor-pointer fs-13">
-                    <span class="d-flex align-items-center gap-2">
-                      <input type="checkbox" name="categories[]" value="{{ $cat->id }}"
-                             {{ in_array($cat->id, is_array($f_categories) ? $f_categories : explode(',', $f_categories)) ? 'checked' : '' }}
-                             class="form-check-input mt-0" onchange="document.getElementById('shop-filter-form').submit();">
-                      {{ $cat->name }}
-                    </span>
-                    <span class="badge bg-light text-secondary rounded-pill">{{ $cat->products_count }}</span>
-                  </label>
+                  @php
+                    $total_cat_count = $cat->products_count + $cat->subcategories->sum('products_count');
+                    $is_cat_checked = in_array($cat->id, is_array($f_categories) ? $f_categories : explode(',', $f_categories));
+                  @endphp
+                  <div>
+                    <label class="form-check-label d-flex justify-content-between align-items-center cursor-pointer fs-13 fw-bold text-dark mb-1">
+                      <span class="d-flex align-items-center gap-2">
+                        <input type="checkbox" name="categories[]" value="{{ $cat->id }}"
+                               {{ $is_cat_checked ? 'checked' : '' }}
+                               class="form-check-input mt-0" onchange="document.getElementById('shop-filter-form').submit();">
+                        {{ $cat->name }}
+                      </span>
+                      <span class="badge bg-light text-dark rounded-pill">{{ $total_cat_count }}</span>
+                    </label>
+
+                    @if($cat->subcategories->isNotEmpty())
+                      <div class="d-flex flex-column gap-1 ps-3 pt-1 border-start ms-2">
+                        @foreach($cat->subcategories as $sub)
+                          @php
+                            $is_sub_checked = in_array($sub->id, is_array($f_categories) ? $f_categories : explode(',', $f_categories));
+                          @endphp
+                          <label class="form-check-label d-flex justify-content-between align-items-center cursor-pointer fs-12 text-secondary">
+                            <span class="d-flex align-items-center gap-2">
+                              <input type="checkbox" name="categories[]" value="{{ $sub->id }}"
+                                     {{ $is_sub_checked ? 'checked' : '' }}
+                                     class="form-check-input mt-0" onchange="document.getElementById('shop-filter-form').submit();">
+                              {{ $sub->name }}
+                            </span>
+                            <span class="badge bg-light text-secondary rounded-pill fs-11">{{ $sub->products_count }}</span>
+                          </label>
+                        @endforeach
+                      </div>
+                    @endif
+                  </div>
                 @endforeach
               </div>
             </div>

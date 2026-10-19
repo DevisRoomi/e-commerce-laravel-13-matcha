@@ -39,7 +39,9 @@ class ShopController extends Controller
         // Filter by Categories (Video 30)
         if (!empty($f_categories)) {
             $categories_arr = is_array($f_categories) ? $f_categories : explode(',', $f_categories);
-            $query->whereIn('category_id', $categories_arr);
+            $sub_ids = Category::whereIn('parent_id', $categories_arr)->pluck('id')->toArray();
+            $all_target_cat_ids = array_unique(array_merge($categories_arr, $sub_ids));
+            $query->whereIn('category_id', $all_target_cat_ids);
         }
 
         // Filter by Price (Video 31)
@@ -68,7 +70,13 @@ class ShopController extends Controller
 
         $products = $query->paginate($page_size)->withQueryString();
 
-        $categories = Category::withCount('products')->where('status', 1)->orderBy('name', 'asc')->get();
+        $categories = Category::whereNull('parent_id')
+            ->with(['subcategories' => fn($q) => $q->withCount('products')->where('status', 1)])
+            ->withCount('products')
+            ->where('status', 1)
+            ->orderBy('name', 'asc')
+            ->get();
+
         $brands = Brand::withCount('products')->where('status', 1)->orderBy('name', 'asc')->get();
 
         return view('shop.index', compact(

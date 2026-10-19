@@ -20,7 +20,7 @@
                 <div>
                     <label for="name" class="block text-sm font-bold text-gray-700 mb-1">Nama Kategori *</label>
                     <input type="text" id="name" name="name" value="{{ old('name') }}" required
-                           placeholder="Contoh: Ceremonial Matcha, Pakaian Muslimah"
+                           placeholder="Contoh: Ceremonial Matcha, Chasen Bambu, Mangkuk Chawan"
                            class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary text-sm @error('name') border-red-500 @enderror">
                     @error('name')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>

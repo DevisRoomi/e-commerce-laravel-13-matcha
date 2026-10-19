@@ -13,13 +13,13 @@
         <div class="swiper-slide">
           <div class="overflow-hidden position-relative h-100">
             <div class="slideshow-character position-absolute bottom-0 pos_right-center">
-              <img loading="lazy" src="{{ asset('assets/images/home/demo3/slideshow-character1.png') }}" width="542" height="733"
-                alt="Woman Fashion 1"
+              <img loading="lazy" src="{{ asset('assets/images/slideshow-character1.png') }}" width="542" height="733"
+                alt="Matcha Chawan & Chasen"
                 class="slideshow-character__img animate animate_fade animate_btt animate_delay-9 w-auto h-auto" />
               <div class="character_markup type2">
                 <p
                   class="text-uppercase font-sofia mark-grey-color animate animate_fade animate_btt animate_delay-10 mb-0">
-                  Dresses</p>
+                  Ceremonial</p>
               </div>
             </div>
             <div class="slideshow-text container position-absolute start-50 top-50 translate-middle">
@@ -36,8 +36,8 @@
         <div class="swiper-slide">
           <div class="overflow-hidden position-relative h-100">
             <div class="slideshow-character position-absolute bottom-0 pos_right-center">
-              <img loading="lazy" src="{{ asset('assets/images/slideshow-character1.png') }}" width="400" height="733"
-                alt="Matcha Muslimah Series"
+              <img loading="lazy" src="{{ asset('assets/images/slideshow-character2.png') }}" width="400" height="733"
+                alt="Segar Iced Matcha Latte"
                 class="slideshow-character__img animate animate_fade animate_btt animate_delay-9 w-auto h-auto" />
               <div class="character_markup">
                 <p class="text-uppercase font-sofia fw-bold animate animate_fade animate_rtl animate_delay-10">Matcha
@@ -46,11 +46,11 @@
             </div>
             <div class="slideshow-text container position-absolute start-50 top-50 translate-middle">
               <h6 class="text_dash text-uppercase fs-base fw-medium animate animate_fade animate_btt animate_delay-3">
-                Koleksi Busana</h6>
-              <h2 class="h1 fw-normal mb-0 animate animate_fade animate_btt animate_delay-5">Modest Muslimah</h2>
-              <h2 class="h1 fw-bold animate animate_fade animate_btt animate_delay-5">Green Palette</h2>
+                Peralatan Tradisional</h6>
+              <h2 class="h1 fw-normal mb-0 animate animate_fade animate_btt animate_delay-5">Chasen Bambu</h2>
+              <h2 class="h1 fw-bold animate animate_fade animate_btt animate_delay-5">& Chawan Keramik</h2>
               <a href="{{ route('shop.index') }}"
-                class="btn-link btn-link_lg default-underline fw-medium animate animate_fade animate_btt animate_delay-7">Lihat Katalog</a>
+                class="btn-link btn-link_lg default-underline fw-medium animate animate_fade animate_btt animate_delay-7">Lihat Koleksi</a>
             </div>
           </div>
         </div>
@@ -58,17 +58,17 @@
         <div class="swiper-slide">
           <div class="overflow-hidden position-relative h-100">
             <div class="slideshow-character position-absolute bottom-0 pos_right-center">
-              <img loading="lazy" src="{{ asset('assets/images/slideshow-character2.png') }}" width="400" height="690"
+              <img loading="lazy" src="{{ asset('assets/images/slideshow-character1.png') }}" width="400" height="690"
                 alt="Upacara Matcha Tradisional"
                 class="slideshow-character__img animate animate_fade animate_rtl animate_delay-10 w-auto h-auto" />
             </div>
             <div class="slideshow-text container position-absolute start-50 top-50 translate-middle">
               <h6 class="text_dash text-uppercase fs-base fw-medium animate animate_fade animate_btt animate_delay-3">
-                Perlengkapan Seduh</h6>
-              <h2 class="h1 fw-normal mb-0 animate animate_fade animate_btt animate_delay-5">Tradisi & Rasa</h2>
-              <h2 class="h1 fw-bold animate animate_fade animate_btt animate_delay-5">Chasen & Chawan</h2>
+                Panen Pertama (First Harvest)</h6>
+              <h2 class="h1 fw-normal mb-0 animate animate_fade animate_btt animate_delay-5">Authentic Taste</h2>
+              <h2 class="h1 fw-bold animate animate_fade animate_btt animate_delay-5">Umami Rich</h2>
               <a href="{{ route('shop.index') }}"
-                class="btn-link btn-link_lg default-underline fw-medium animate animate_fade animate_btt animate_delay-7">Eksplorasi</a>
+                class="btn-link btn-link_lg default-underline fw-medium animate animate_fade animate_btt animate_delay-7">Pesan Sekarang</a>
             </div>
           </div>
         </div>
@@ -282,25 +282,25 @@
         <div class="row">
           <div class="col-md-6">
             <div class="category-banner__item border-radius-10 mb-5">
-              <img loading="lazy" class="h-auto" src="{{ asset('assets/images/home/demo3/category_9.jpg') }}" width="690" height="665" alt="Busana Muslimah" />
+              <img loading="lazy" class="h-auto" src="{{ asset('assets/images/home/demo3/category_9.jpg') }}" width="690" height="665" alt="Saringan Stainless Furui" />
               <div class="category-banner__item-mark">
-                Koleksi Baru
+                Aksesoris Seduh
               </div>
               <div class="category-banner__item-content">
-                <h3 class="mb-0">Busana Muslimah</h3>
-                <a href="{{ route('shop.index') }}" class="btn-link default-underline text-uppercase fw-medium">Lihat Koleksi</a>
+                <h3 class="mb-0">Saringan & Sendok Takar</h3>
+                <a href="{{ route('shop.index', ['categories' => 3]) }}" class="btn-link default-underline text-uppercase fw-medium">Lihat Koleksi</a>
               </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="category-banner__item border-radius-10 mb-5">
-              <img loading="lazy" class="h-auto" src="{{ asset('assets/images/home/demo3/category_10.jpg') }}" width="690" height="665" alt="Teh & Aksesoris" />
+              <img loading="lazy" class="h-auto" src="{{ asset('assets/images/home/demo3/category_10.jpg') }}" width="690" height="665" alt="Chawan & Cangkir Keramik" />
               <div class="category-banner__item-mark">
-                Diskon 10%
+                Ceramics Craft
               </div>
               <div class="category-banner__item-content">
-                <h3 class="mb-0">Teh & Aksesoris</h3>
-                <a href="{{ route('shop.index') }}" class="btn-link default-underline text-uppercase fw-medium">Beli Sekarang</a>
+                <h3 class="mb-0">Chawan & Cangkir Keramik</h3>
+                <a href="{{ route('shop.index', ['categories' => 2]) }}" class="btn-link default-underline text-uppercase fw-medium">Beli Sekarang</a>
               </div>
             </div>
           </div>
