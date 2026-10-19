@@ -1,0 +1,150 @@
+.footer-middle {
+    padding-top: 2.25rem;
+    padding-bottom: 2.25rem;
+}
+.text-right{
+    text-align: right;
+}
+.pt-90 {
+    padding-top: 90px !important;
+}
+.my-account__address-list {
+    display: flex;
+    gap: 1.625rem;
+}
+
+.form-floating>.form-control,
+.form-floating>.form-select {
+    height: 48px;
+}
+/* Custom Typography Override */
+body, p, a, span, .menu-link, .search-field__input {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6, .pc__title, .section-title, .slideshow-text h2 {
+    font-family: 'Playfair Display', serif !important;
+}
+/* --- TEMA MATCHA: ROMBAK TOTAL KESELURUHAN WEB --- */
+
+/* 1. Latar Belakang Layar Paling Luar (Warna Hijau Matcha / Kiwi Sorbet) */
+body, html, .page-wrapper, .gradient-bg {
+    background-color: var(--bs-light) !important;
+    color: var(--bs-primary) !important;
+}
+
+/* 2. Kotak Konten Area Tengah & Produk (Warna Krem Terang / White Matcha) */
+.bg-white, .bg-body, .mw-1620 {
+    background-color: var(--bs-lighter) !important;
+}
+
+/* 3. Area Header & Navigasi (Menyatu dengan latar Hijau Matcha) */
+.header, .header-mobile, .header-mobile__navigation, .navigation {
+    background-color: var(--bs-light) !important;
+}
+.header-transparent-bg {
+    background-color: transparent !important;
+}
+
+/* 4. Area Footer & Footer Mobile (Warna Forest / Hijau Gelap) */
+.footer, .footer-mobile {
+    background-color: var(--bs-primary) !important;
+    color: var(--bs-lighter) !important;
+}
+.footer .menu-link, .footer p, .footer-copyright, .footer a, .footer-mobile__link span, .footer-mobile__link {
+    color: var(--bs-lighter) !important;
+}
+.footer .menu-link:hover, .footer a:hover, .footer-mobile__link:hover {
+    color: var(--bs-light) !important;
+}
+.footer svg, .footer-mobile svg {
+    color: var(--bs-lighter) !important;
+}
+
+/* 5. Teks, Judul, dan Link Umum (Forest Green) */
+h1, h2, h3, h4, h5, h6, .pc__title a, .section-title, .menu-link, .navigation__link, .btn-link {
+    color: var(--bs-primary) !important;
+}
+.menu-link:hover, .navigation__link:hover, .btn-link:hover, .pc__title a:hover {
+    color: var(--bs-green) !important; /* Grass Green saat di-hover */
+}
+
+/* 6. Ikon Garis (Burger menu, Cart, Search, User) */
+.header-tools__item svg, .pc__btn-wl svg, .nav-icon, .btn-icon svg {
+    color: var(--bs-primary) !important;
+}
+.header-tools__item:hover svg, .pc__btn-wl:hover svg {
+    color: var(--bs-green) !important;
+}
+
+/* 7. Label Angka Keranjang, Wishlist & Diskon (Warna Basil Green) */
+.cart-amount, .wishlist-amount, .product-label {
+    background-color: var(--bs-secondary) !important;
+    color: var(--bs-white) !important;
+    border: none !important;
+}
+
+/* 8. Garis Bawah Tombol (Underline) */
+.default-underline::after {
+    background-color: var(--bs-green) !important;
+}
+
+/* 9. Kotak Pencarian */
+.search-field__input, .form-control {
+    background-color: var(--bs-lighter) !important;
+    border: 1px solid var(--bs-primary) !important;
+    color: var(--bs-primary) !important;
+}
+.search-field__input::placeholder {
+    color: var(--bs-secondary) !important;
+}
+
+/* 10. Kotak Produk (Biar rapi di atas warna krem) */
+.product-card {
+    background-color: #ffffff !important; /* Kotak gambar produk tetap putih bersih */
+    border: 1px solid var(--bs-light) !important;
+    border-radius: 12px;
+    padding: 10px;
+}
+/* --- TEMA MATCHA: PENYEMPURNAAN DETAIL DALAM (MATCHING MATCHA) --- */
+
+/* 1. Mengubah bulatan merah "Starting at $19" menjadi Hijau Basil */
+.category-banner__item-mark {
+    background-color: var(--bs-secondary) !important;
+    color: var(--bs-lighter) !important;
+}
+
+/* 2. Kotak Konten Area Tengah (Matcha Latte / Krem Kehijauan Lembut) */
+.bg-white, .bg-body, .mw-1620 {
+    background-color: #EEF3DF !important; /* Menghilangkan putih pucat, ganti dengan hijau krem */
+}
+
+/* Mengubah Kotak Produk agar TIDAK pure white (#fff) */
+.product-card {
+    background-color: #F6F9EF !important; /* Sedikit lebih terang dari area tengah, tapi ada hint hijaunya */
+    border: 1px solid var(--bs-light) !important;
+    border-radius: 12px;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+/* 3. Memberi efek interaktif Matcha pada Kotak Produk saat disentuh kursor */
+.product-card {
+    border-color: transparent !important; /* Hilangkan garis kaku bawaan */
+    transition: all 0.3s ease;
+}
+.product-card:hover {
+    border-color: var(--bs-secondary) !important; /* Muncul garis hijau basil */
+    box-shadow: 0 8px 20px rgba(49, 82, 44, 0.1) !important; /* Bayangan tipis warna Forest */
+    transform: translateY(-3px); /* Efek melayang sedikit */
+}
+
+/* 4. Warna Teks Harga Coret (Harga diskon) dibikin hijau pudar biar menyatu */
+.price-old {
+    color: #90A955 !important; /* Moss green pucat */
+    opacity: 0.7;
+}
+
+/* 5. Memastikan tombol panah slider (kiri/kanan) berwarna Forest */
+.products-carousel__prev svg, .products-carousel__next svg, .slideshow-pagination {
+    color: var(--bs-primary) !important;
+}
