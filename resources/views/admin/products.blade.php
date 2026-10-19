@@ -7,6 +7,9 @@
                 <p class="text-sm text-gray-500">Kelola inventaris produk, stok, harga, dan varian</p>
             </div>
             <div class="flex flex-wrap items-center gap-3">
+                <a href="{{ route('admin.products.export') }}" class="bg-white hover:bg-matchaCream text-emerald-900 border border-emerald-200 px-4 py-2.5 rounded-xl text-sm font-semibold transition flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-file-excel text-emerald-700"></i> Ekspor Excel
+                </a>
                 <button type="button" onclick="printDiv('printableArea')" class="bg-white hover:bg-matchaCream text-emerald-900 border border-emerald-200 px-4 py-2.5 rounded-xl text-sm font-semibold transition flex items-center gap-2 shadow-sm">
                     <i class="fa-solid fa-print"></i> Cetak / Print
                 </button>

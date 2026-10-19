@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Laravel\Facades\Image;
 use Carbon\Carbon;
+use App\Exports\ProductExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -305,6 +307,11 @@ class ProductController extends Controller
         }
 
         return redirect()->route('admin.products')->with('status', count($request->ids) . ' produk berhasil dihapus!');
+    }
+
+    public function product_export()
+    {
+        return Excel::download(new ProductExport, 'products.xlsx');
     }
 
     public function generateThumbnailImage($filePath, $image_name, $folder, $width = 124, $height = 124)

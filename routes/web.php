@@ -38,6 +38,7 @@ Route::middleware(['auth', 'auth.admin'])->group(function () {
 
     // Products (Video 17 - 20)
     Route::get('/admin/products', [ProductController::class, 'products'])->name('admin.products');
+    Route::get('/admin/products/export', [ProductController::class, 'product_export'])->name('admin.products.export');
     Route::get('/admin/product/add', [ProductController::class, 'product_add'])->name('admin.product.add');
     Route::post('/admin/product/store', [ProductController::class, 'product_store'])->name('admin.product.store');
     Route::get('/admin/product/edit/{id}', [ProductController::class, 'product_edit'])->name('admin.product.edit');
