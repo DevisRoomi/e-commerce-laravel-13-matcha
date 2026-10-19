@@ -24,20 +24,60 @@
             </div>
         @endif
 
-        <!-- Filter & Search Bar -->
-        <div class="bg-white p-4 rounded-2xl shadow-sm border border-emerald-100 flex flex-col md:flex-row justify-between items-center gap-4">
-            <form action="{{ route('admin.products') }}" method="GET" class="w-full md:w-80 relative">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-emerald-700">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </span>
-                <input type="text" name="name" value="{{ request('name') }}" placeholder="Cari nama produk..."
-                       class="w-full pl-10 pr-4 py-2 bg-matchaCream border border-emerald-200 rounded-xl text-sm focus:outline-none focus:border-primary">
+        <!-- Filter & Search Bar (Video 22) -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-emerald-100">
+            <form id="filter-form" action="{{ route('admin.products') }}" method="GET" class="flex flex-col lg:flex-row items-center justify-between gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 w-full lg:w-auto flex-1">
+                    <!-- Search Input -->
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-emerald-700">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama atau SKU..."
+                               onkeypress="if(event.key === 'Enter') this.form.submit();"
+                               class="w-full pl-10 pr-4 py-2 bg-matchaCream border border-emerald-200 rounded-xl text-sm focus:outline-none focus:border-primary">
+                    </div>
+
+                    <!-- Category Select -->
+                    <div>
+                        <select name="category" onchange="this.form.submit()" class="w-full px-3 py-2 bg-matchaCream border border-emerald-200 rounded-xl text-sm text-gray-700 focus:outline-none focus:border-primary">
+                            <option value="">Semua Kategori</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <!-- Brand Select -->
+                    <div>
+                        <select name="brand" onchange="this.form.submit()" class="w-full px-3 py-2 bg-matchaCream border border-emerald-200 rounded-xl text-sm text-gray-700 focus:outline-none focus:border-primary">
+                            <option value="">Semua Merek</option>
+                            @foreach($brands as $brand)
+                                <option value="{{ $brand->id }}" {{ request('brand') == $brand->id ? 'selected' : '' }}>
+                                    {{ $brand->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <!-- Status Select -->
+                    <div>
+                        <select name="status" onchange="this.form.submit()" class="w-full px-3 py-2 bg-matchaCream border border-emerald-200 rounded-xl text-sm text-gray-700 focus:outline-none focus:border-primary">
+                            <option value="">Semua Status</option>
+                            <option value="1" {{ request('status') === '1' ? 'selected' : '' }}>Tayang (Published)</option>
+                            <option value="0" {{ request('status') === '0' ? 'selected' : '' }}>Draft</option>
+                        </select>
+                    </div>
+                </div>
+
+                @if(request()->hasAny(['search', 'category', 'brand', 'status']))
+                    <a href="{{ route('admin.products') }}" class="text-xs font-semibold text-red-600 hover:text-red-700 whitespace-nowrap flex items-center gap-1.5 px-3 py-2 rounded-xl bg-red-50 hover:bg-red-100 transition">
+                        <i class="fa-solid fa-rotate-left"></i> Reset Filter
+                    </a>
+                @endif
             </form>
-            @if(request('name'))
-                <a href="{{ route('admin.products') }}" class="text-xs font-semibold text-gray-500 hover:text-red-500">
-                    <i class="fa-solid fa-xmark"></i> Reset Pencarian
-                </a>
-            @endif
         </div>
 
         <!-- Products Table -->

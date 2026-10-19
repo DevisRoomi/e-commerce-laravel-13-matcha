@@ -15,14 +15,38 @@ class ProductController extends Controller
 {
     public function products(Request $request)
     {
-        $products = Product::with(['category', 'brand'])
-            ->when($request->query('name'), function ($query, $name) {
-                return $query->where('name', 'like', "%{$name}%");
-            })
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+        $categories = Category::select('id', 'name')->orderBy('name', 'asc')->get();
+        $brands = Brand::select('id', 'name')->orderBy('name', 'asc')->get();
 
-        return view('admin.products', compact('products'));
+        $query = Product::with(['category', 'brand']);
+
+        // Search by name or SKU
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('SKU', 'like', "%{$search}%");
+            });
+        }
+
+        // Filter by Category
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
+
+        // Filter by Brand
+        if ($request->filled('brand')) {
+            $query->where('brand_id', $request->brand);
+        }
+
+        // Filter by Status (0 for Draft, 1 for Published)
+        if ($request->has('status') && $request->status !== '' && $request->status !== null) {
+            $query->where('status', $request->status);
+        }
+
+        $products = $query->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
+
+        return view('admin.products', compact('products', 'categories', 'brands'));
     }
 
     public function product_add()
