@@ -246,6 +246,43 @@ class ProductController extends Controller
         return redirect()->route('admin.products')->with('status', 'Produk berhasil dihapus!');
     }
 
+    public function product_bulk_delete(Request $request)
+    {
+        $request->validate([
+            'ids' => 'required|array',
+            'ids.*' => 'exists:products,id',
+        ]);
+
+        $products = Product::whereIn('id', $request->ids)->get();
+
+        foreach ($products as $product) {
+            if ($product->image) {
+                if (File::exists(public_path('uploads/products/' . $product->image))) {
+                    File::delete(public_path('uploads/products/' . $product->image));
+                }
+                if (File::exists(public_path('uploads/products/thumbnails/' . $product->image))) {
+                    File::delete(public_path('uploads/products/thumbnails/' . $product->image));
+                }
+            }
+
+            if ($product->images) {
+                $images = explode(',', $product->images);
+                foreach ($images as $img) {
+                    if (File::exists(public_path('uploads/products/' . $img))) {
+                        File::delete(public_path('uploads/products/' . $img));
+                    }
+                    if (File::exists(public_path('uploads/products/thumbnails/' . $img))) {
+                        File::delete(public_path('uploads/products/thumbnails/' . $img));
+                    }
+                }
+            }
+
+            $product->delete();
+        }
+
+        return redirect()->route('admin.products')->with('status', count($request->ids) . ' produk berhasil dihapus!');
+    }
+
     public function generateThumbnailImage($filePath, $image_name, $folder, $width = 124, $height = 124)
     {
         $destinationPath = public_path('uploads/' . $folder . '/thumbnails');

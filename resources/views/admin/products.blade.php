@@ -6,9 +6,14 @@
                 <h1 class="text-2xl font-bold text-gray-800">Katalog Produk</h1>
                 <p class="text-sm text-gray-500">Kelola inventaris produk, stok, harga, dan varian</p>
             </div>
-            <a href="{{ route('admin.product.add') }}" class="bg-primary hover:bg-secondary text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition flex items-center gap-2 shadow-sm">
-                <i class="fa-solid fa-plus"></i> Tambah Produk Baru
-            </a>
+            <div class="flex items-center gap-3">
+                <button type="button" id="bulk-delete-btn" class="hidden bg-red-600 hover:bg-red-700 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-trash"></i> Hapus Terpilih (<span id="selected-count">0</span>)
+                </button>
+                <a href="{{ route('admin.product.add') }}" class="bg-primary hover:bg-secondary text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-plus"></i> Tambah Produk Baru
+                </a>
+            </div>
         </div>
 
         <!-- Alert Notification -->
@@ -36,27 +41,36 @@
         </div>
 
         <!-- Products Table -->
-        <div class="bg-white rounded-2xl shadow-sm border border-emerald-100 overflow-hidden">
-            <div class="overflow-x-auto">
-                <table class="w-full text-left text-sm text-gray-600">
-                    <thead class="bg-matchaLight/50 text-gray-700 text-xs uppercase font-bold border-b border-emerald-100">
-                        <tr>
-                            <th class="px-6 py-4">ID</th>
-                            <th class="px-6 py-4">Produk</th>
-                            <th class="px-6 py-4">SKU</th>
-                            <th class="px-6 py-4">Kategori</th>
-                            <th class="px-6 py-4">Merek</th>
-                            <th class="px-6 py-4">Harga</th>
-                            <th class="px-6 py-4 text-center">Stok</th>
-                            <th class="px-6 py-4 text-center">Status</th>
-                            <th class="px-6 py-4 text-right">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-100">
-                        @forelse($products as $product)
-                            <tr class="hover:bg-matchaCream/50 transition">
-                                <td class="px-6 py-4 font-bold text-gray-700">#{{ $product->id }}</td>
-                                <td class="px-6 py-4">
+        <form id="bulk-action-form" action="{{ route('admin.products.bulk.delete') }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <div class="bg-white rounded-2xl shadow-sm border border-emerald-100 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-gray-600">
+                        <thead class="bg-matchaLight/50 text-gray-700 text-xs uppercase font-bold border-b border-emerald-100">
+                            <tr>
+                                <th class="px-4 py-4 w-10 text-center">
+                                    <input type="checkbox" id="select-all" class="w-4 h-4 rounded text-primary focus:ring-primary border-gray-300 cursor-pointer">
+                                </th>
+                                <th class="px-4 py-4">ID</th>
+                                <th class="px-6 py-4">Produk</th>
+                                <th class="px-6 py-4">SKU</th>
+                                <th class="px-6 py-4">Kategori</th>
+                                <th class="px-6 py-4">Merek</th>
+                                <th class="px-6 py-4">Harga</th>
+                                <th class="px-6 py-4 text-center">Stok</th>
+                                <th class="px-6 py-4 text-center">Status</th>
+                                <th class="px-6 py-4 text-right">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+                            @forelse($products as $product)
+                                <tr class="hover:bg-matchaCream/50 transition">
+                                    <td class="px-4 py-4 text-center">
+                                        <input type="checkbox" name="ids[]" value="{{ $product->id }}" class="product-checkbox w-4 h-4 rounded text-primary focus:ring-primary border-gray-300 cursor-pointer">
+                                    </td>
+                                    <td class="px-4 py-4 font-bold text-gray-700">#{{ $product->id }}</td>
+                                    <td class="px-6 py-4">
                                     <div class="flex items-center gap-3">
                                         <div class="w-12 h-12 rounded-xl bg-gray-50 border border-gray-100 p-1 flex items-center justify-center overflow-hidden shrink-0">
                                             @if($product->image)
@@ -131,7 +145,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="9" class="px-6 py-12 text-center text-gray-400">
+                                <td colspan="10" class="px-6 py-12 text-center text-gray-400">
                                     <i class="fa-solid fa-boxes-stacked text-3xl mb-2 text-gray-300"></i>
                                     <p class="font-medium">Belum ada produk di katalog.</p>
                                 </td>
@@ -147,5 +161,49 @@
                 </div>
             @endif
         </div>
+        </form>
     </div>
+
+    <!-- Bulk Action JavaScript (Video 21) -->
+    <script>
+        const selectAll = document.getElementById('select-all');
+        const checkboxes = document.querySelectorAll('.product-checkbox');
+        const bulkDeleteBtn = document.getElementById('bulk-delete-btn');
+        const selectedCount = document.getElementById('selected-count');
+        const bulkForm = document.getElementById('bulk-action-form');
+
+        function updateBulkUI() {
+            const checked = document.querySelectorAll('.product-checkbox:checked');
+            const count = checked.length;
+            if (selectedCount) selectedCount.innerText = count;
+            if (count > 0) {
+                bulkDeleteBtn.classList.remove('hidden');
+                bulkDeleteBtn.classList.add('inline-flex');
+            } else {
+                bulkDeleteBtn.classList.add('hidden');
+                bulkDeleteBtn.classList.remove('inline-flex');
+                if (selectAll) selectAll.checked = false;
+            }
+        }
+
+        if (selectAll) {
+            selectAll.addEventListener('change', function() {
+                checkboxes.forEach(cb => cb.checked = selectAll.checked);
+                updateBulkUI();
+            });
+        }
+
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', updateBulkUI);
+        });
+
+        if (bulkDeleteBtn) {
+            bulkDeleteBtn.addEventListener('click', function() {
+                const count = document.querySelectorAll('.product-checkbox:checked').length;
+                if (count > 0 && confirm(`Apakah Anda yakin ingin menghapus ${count} produk terpilih?`)) {
+                    bulkForm.submit();
+                }
+            });
+        }
+    </script>
 </x-admin-layout>
