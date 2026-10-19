@@ -63,7 +63,7 @@
 
                     <p class="px-4 text-[11px] font-bold text-emerald-400 uppercase tracking-wider mt-5 mb-2">Manajemen Toko</p>
 
-                    <a href="#" class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-xl text-emerald-100 hover:bg-sidebarActive hover:text-white transition">
+                    <a href="{{ route('admin.products') }}" class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.product*') ? 'bg-primary text-white shadow-md font-semibold' : 'text-emerald-100 hover:bg-sidebarActive hover:text-white' }}">
                         <i class="fa-solid fa-box w-5 text-center"></i>
                         <span>Produk</span>
                     </a>

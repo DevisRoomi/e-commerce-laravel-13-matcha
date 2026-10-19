@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 
 /* Rute untuk Halaman Utama (Beranda/Home) */
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
@@ -34,4 +35,12 @@ Route::middleware(['auth', 'auth.admin'])->group(function () {
     Route::get('/admin/category/edit/{id}', [AdminController::class, 'category_edit'])->name('admin.category.edit');
     Route::put('/admin/category/update/{id}', [AdminController::class, 'category_update'])->name('admin.category.update');
     Route::delete('/admin/category/delete/{id}', [AdminController::class, 'category_delete'])->name('admin.category.delete');
+
+    // Products (Video 17 - 20)
+    Route::get('/admin/products', [ProductController::class, 'products'])->name('admin.products');
+    Route::get('/admin/product/add', [ProductController::class, 'product_add'])->name('admin.product.add');
+    Route::post('/admin/product/store', [ProductController::class, 'product_store'])->name('admin.product.store');
+    Route::get('/admin/product/edit/{id}', [ProductController::class, 'product_edit'])->name('admin.product.edit');
+    Route::put('/admin/product/update/{id}', [ProductController::class, 'product_update'])->name('admin.product.update');
+    Route::delete('/admin/product/delete/{id}', [ProductController::class, 'product_delete'])->name('admin.product.delete');
 });
