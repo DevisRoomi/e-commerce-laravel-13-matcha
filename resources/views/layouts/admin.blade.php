@@ -73,7 +73,7 @@
                         <span>Kategori</span>
                     </a>
 
-                    <a href="#" class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-xl text-emerald-100 hover:bg-sidebarActive hover:text-white transition">
+                    <a href="{{ route('admin.brands') }}" class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.brand*') ? 'bg-primary text-white shadow-md font-semibold' : 'text-emerald-100 hover:bg-sidebarActive hover:text-white' }}">
                         <i class="fa-solid fa-tag w-5 text-center"></i>
                         <span>Merek (Brands)</span>
                     </a>
@@ -147,13 +147,13 @@
 
                     <div class="flex items-center gap-3">
                         <div class="text-right hidden sm:block">
-                            <p class="text-sm font-bold text-gray-800">{{ Auth::user()->name }}</p>
+                            <p class="text-sm font-bold text-gray-800">{{ Auth::user()?->name ?? 'Admin' }}</p>
                             <span class="inline-block text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
                                 Administrator
                             </span>
                         </div>
                         <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shadow">
-                            {{ substr(Auth::user()->name, 0, 1) }}
+                            {{ substr(Auth::user()?->name ?? 'Admin', 0, 1) }}
                         </div>
                     </div>
                 </div>
