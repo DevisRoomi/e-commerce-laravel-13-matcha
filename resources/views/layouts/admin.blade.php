@@ -68,7 +68,7 @@
                         <span>Produk</span>
                     </a>
 
-                    <a href="#" class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-xl text-emerald-100 hover:bg-sidebarActive hover:text-white transition">
+                    <a href="{{ route('admin.categories') }}" class="nav-link flex items-center gap-3 px-4 py-2.5 rounded-xl transition {{ request()->routeIs('admin.categor*') ? 'bg-primary text-white shadow-md font-semibold' : 'text-emerald-100 hover:bg-sidebarActive hover:text-white' }}">
                         <i class="fa-solid fa-layer-group w-5 text-center"></i>
                         <span>Kategori</span>
                     </a>
