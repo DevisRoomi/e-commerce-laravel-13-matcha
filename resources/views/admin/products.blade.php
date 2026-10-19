@@ -6,7 +6,10 @@
                 <h1 class="text-2xl font-bold text-gray-800">Katalog Produk</h1>
                 <p class="text-sm text-gray-500">Kelola inventaris produk, stok, harga, dan varian</p>
             </div>
-            <div class="flex items-center gap-3">
+            <div class="flex flex-wrap items-center gap-3">
+                <button type="button" onclick="printDiv('printableArea')" class="bg-white hover:bg-matchaCream text-emerald-900 border border-emerald-200 px-4 py-2.5 rounded-xl text-sm font-semibold transition flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-print"></i> Cetak / Print
+                </button>
                 <button type="button" id="bulk-delete-btn" class="hidden bg-red-600 hover:bg-red-700 text-white px-4 py-2.5 rounded-xl text-sm font-semibold transition items-center gap-2 shadow-sm">
                     <i class="fa-solid fa-trash"></i> Hapus Terpilih (<span id="selected-count">0</span>)
                 </button>
@@ -84,7 +87,7 @@
         <form id="bulk-action-form" action="{{ route('admin.products.bulk.delete') }}" method="POST">
             @csrf
             @method('DELETE')
-            <div class="bg-white rounded-2xl shadow-sm border border-emerald-100 overflow-hidden">
+            <div id="printableArea" class="bg-white rounded-2xl shadow-sm border border-emerald-100 overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm text-gray-600">
                         <thead class="bg-matchaLight/50 text-gray-700 text-xs uppercase font-bold border-b border-emerald-100">
@@ -244,6 +247,24 @@
                     bulkForm.submit();
                 }
             });
+        }
+
+        // Print Function (Video 23)
+        function printDiv(divId) {
+            const printContents = document.getElementById(divId).innerHTML;
+            const originalContents = document.body.innerHTML;
+            document.body.innerHTML = `
+                <div style="padding: 24px; font-family: 'Plus Jakarta Sans', system-ui, sans-serif;">
+                    <div style="margin-bottom: 20px; border-bottom: 2px solid #31522C; padding-bottom: 12px;">
+                        <h2 style="font-size: 22px; font-weight: bold; color: #31522C; margin: 0;">🍵 MATCHA E-COMMERCE - DAFTAR PRODUK</h2>
+                        <p style="font-size: 13px; color: #666; margin: 4px 0 0 0;">Laporan cetak data inventaris dan katalog barang toko</p>
+                    </div>
+                    ${printContents}
+                </div>
+            `;
+            window.print();
+            document.body.innerHTML = originalContents;
+            window.location.reload();
         }
     </script>
 </x-admin-layout>
