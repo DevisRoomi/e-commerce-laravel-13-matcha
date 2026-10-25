@@ -449,13 +449,11 @@
                   <div class="sub-menu search-suggestion">
                     <h6 class="sub-menu__title fs-base">Quicklinks</h6>
                     <ul class="sub-menu__list list-unstyled">
-                      <li class="sub-menu__item"><a href="shop2.html" class="menu-link menu-link_us-s">New Arrivals</a>
-                      </li>
-                      <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Dresses</a></li>
-                      <li class="sub-menu__item"><a href="shop3.html" class="menu-link menu-link_us-s">Accessories</a>
-                      </li>
-                      <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Footwear</a></li>
-                      <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Sweatshirt</a></li>
+                      <li class="sub-menu__item"><a href="{{ route('shop.index', ['order' => 1]) }}" class="menu-link menu-link_us-s">Koleksi Terbaru</a></li>
+                      <li class="sub-menu__item"><a href="{{ route('shop.index', ['search' => 'matcha']) }}" class="menu-link menu-link_us-s">Bubuk Matcha</a></li>
+                      <li class="sub-menu__item"><a href="{{ route('shop.index', ['search' => 'chasen']) }}" class="menu-link menu-link_us-s">Peralatan Seduh</a></li>
+                      <li class="sub-menu__item"><a href="{{ route('shop.index', ['search' => 'sifter']) }}" class="menu-link menu-link_us-s">Saringan Matcha</a></li>
+                      <li class="sub-menu__item"><a href="{{ route('shop.index') }}" class="menu-link menu-link_us-s">Semua Koleksi</a></li>
                     </ul>
                   </div>
 
@@ -601,24 +599,26 @@
         <div class="footer-column footer-menu mb-4 mb-lg-0">
           <h6 class="sub-menu__title text-uppercase">Help</h6>
           <ul class="sub-menu__list list-unstyled">
-            <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Customer Service</a></li>
-            <li class="sub-menu__item"><a href="account_dashboard.html" class="menu-link menu-link_us-s">My Account</a>
-            </li>
-            <li class="sub-menu__item"><a href="store_location.html" class="menu-link menu-link_us-s">Find a Store</a>
-            </li>
-            <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Legal & Privacy</a></li>
-            <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Gift Card</a></li>
+            <li class="sub-menu__item"><a href="{{ route('home.contact') }}" class="menu-link menu-link_us-s">Customer Service</a></li>
+            @auth
+              <li class="sub-menu__item"><a href="{{ route('user.index') }}" class="menu-link menu-link_us-s">Akun Saya</a></li>
+            @else
+              <li class="sub-menu__item"><a href="{{ route('login') }}" class="menu-link menu-link_us-s">Masuk / Daftar</a></li>
+            @endauth
+            <li class="sub-menu__item"><a href="{{ route('home.contact') }}" class="menu-link menu-link_us-s">Hubungi Kami</a></li>
+            <li class="sub-menu__item"><a href="{{ route('home.about') }}" class="menu-link menu-link_us-s">Tentang Matcha Atelier</a></li>
+            <li class="sub-menu__item"><a href="{{ route('shop.index') }}" class="menu-link menu-link_us-s">Kartu Hadiah</a></li>
           </ul>
         </div>
 
         <div class="footer-column footer-menu mb-4 mb-lg-0">
           <h6 class="sub-menu__title text-uppercase">Categories</h6>
           <ul class="sub-menu__list list-unstyled">
-            <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Shirts</a></li>
-            <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Jeans</a></li>
-            <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Shoes</a></li>
-            <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Bags</a></li>
-            <li class="sub-menu__item"><a href="#" class="menu-link menu-link_us-s">Shop All</a></li>
+            <li class="sub-menu__item"><a href="{{ route('shop.index', ['search' => 'matcha']) }}" class="menu-link menu-link_us-s">Bubuk Matcha</a></li>
+            <li class="sub-menu__item"><a href="{{ route('shop.index', ['search' => 'chasen']) }}" class="menu-link menu-link_us-s">Whisk Chasen</a></li>
+            <li class="sub-menu__item"><a href="{{ route('shop.index', ['search' => 'chawan']) }}" class="menu-link menu-link_us-s">Chawan Ceramic</a></li>
+            <li class="sub-menu__item"><a href="{{ route('shop.index', ['search' => 'sifter']) }}" class="menu-link menu-link_us-s">Saringan Matcha</a></li>
+            <li class="sub-menu__item"><a href="{{ route('shop.index') }}" class="menu-link menu-link_us-s">Semua Koleksi</a></li>
           </ul>
         </div>
       </div>
@@ -626,10 +626,10 @@
 
     <div class="footer-bottom">
       <div class="container d-md-flex align-items-center">
-        <span class="footer-copyright me-auto">©2024 Surfside Media</span>
+        <span class="footer-copyright me-auto">©{{ date('Y') }} Matcha Atelier</span>
         <div class="footer-settings d-md-flex align-items-center">
-          <a href="privacy-policy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="terms-conditions.html">Terms &amp;
-            Conditions</a>
+          <a href="{{ route('home.about') }}">Kebijakan Toko</a> &nbsp;|&nbsp; <a href="{{ route('home.contact') }}">Syarat &amp;
+            Bantuan</a>
         </div>
       </div>
     </div>
@@ -639,7 +639,7 @@
   <footer class="footer-mobile container w-100 px-5 d-md-none bg-body">
     <div class="row text-center">
       <div class="col-4">
-        <a href="index.html" class="footer-mobile__link d-flex flex-column align-items-center">
+        <a href="{{ route('home.index') }}" class="footer-mobile__link d-flex flex-column align-items-center">
           <svg class="d-block" width="18" height="18" viewBox="0 0 18 18" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <use href="#icon_home" />
@@ -649,7 +649,7 @@
       </div>
 
       <div class="col-4">
-        <a href="index.html" class="footer-mobile__link d-flex flex-column align-items-center">
+        <a href="{{ route('home.index') }}" class="footer-mobile__link d-flex flex-column align-items-center">
           <svg class="d-block" width="18" height="18" viewBox="0 0 18 18" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <use href="#icon_hanger" />
@@ -659,13 +659,15 @@
       </div>
 
       <div class="col-4">
-        <a href="index.html" class="footer-mobile__link d-flex flex-column align-items-center">
+        <a href="{{ route('home.index') }}" class="footer-mobile__link d-flex flex-column align-items-center">
           <div class="position-relative">
             <svg class="d-block" width="18" height="18" viewBox="0 0 20 20" fill="none"
               xmlns="http://www.w3.org/2000/svg">
               <use href="#icon_heart" />
             </svg>
-            <span class="wishlist-amount d-block position-absolute js-wishlist-count">3</span>
+            @if(Cart::instance('wishlist')->count() > 0)
+              <span class="wishlist-amount d-block position-absolute js-wishlist-count">{{ Cart::instance('wishlist')->count() }}</span>
+            @endif
           </div>
           <span>Wishlist</span>
         </a>

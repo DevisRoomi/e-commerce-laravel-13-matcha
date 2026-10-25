@@ -14,22 +14,22 @@
       </a>
     </li>
     <li>
-      <a href="#" class="menu-link menu-link_us-s d-flex align-items-center gap-2 p-3 border-bottom text-secondary">
+      <a href="{{ route('cart.index') }}" class="menu-link menu-link_us-s d-flex align-items-center gap-2 p-3 border-bottom text-secondary">
         <i class="fa-solid fa-bag-shopping w-5"></i> Pesanan Saya
       </a>
     </li>
     <li>
-      <a href="#" class="menu-link menu-link_us-s d-flex align-items-center gap-2 p-3 border-bottom text-secondary">
+      <a href="{{ route('home.contact') }}" class="menu-link menu-link_us-s d-flex align-items-center gap-2 p-3 border-bottom text-secondary">
         <i class="fa-solid fa-location-dot w-5"></i> Alamat Pengiriman
       </a>
     </li>
     <li>
-      <a href="#" class="menu-link menu-link_us-s d-flex align-items-center gap-2 p-3 border-bottom text-secondary">
+      <a href="{{ route('profile.edit') }}" class="menu-link menu-link_us-s d-flex align-items-center gap-2 p-3 border-bottom text-secondary">
         <i class="fa-solid fa-user-pen w-5"></i> Detail Akun
       </a>
     </li>
     <li>
-      <a href="#" class="menu-link menu-link_us-s d-flex align-items-center gap-2 p-3 border-bottom text-secondary">
+      <a href="{{ route('wishlist.index') }}" class="menu-link menu-link_us-s d-flex align-items-center gap-2 p-3 border-bottom text-secondary">
         <i class="fa-solid fa-heart w-5"></i> Wishlist
       </a>
     </li>
