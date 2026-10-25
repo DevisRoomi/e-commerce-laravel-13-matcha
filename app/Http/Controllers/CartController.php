@@ -47,18 +47,26 @@ class CartController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:products,id',
-            'name' => 'required',
             'quantity' => 'required|integer|min:1',
-            'price' => 'required|numeric|min:0',
         ]);
 
-        $product = Product::findOrFail($request->id);
+        $product = Product::whereKey($request->id)
+            ->where('status', 1)
+            ->where('stock_status', 'instock')
+            ->firstOrFail();
+        $price = (float) ($product->sale_price ?: $product->regular_price);
+        $existing = Cart::instance('cart')->content()->firstWhere('id', $product->id);
+        $requestedQuantity = (int) $request->quantity + (int) ($existing['qty'] ?? 0);
+
+        if ($requestedQuantity > $product->quantity) {
+            return redirect()->back()->withErrors(['quantity' => 'Jumlah produk melebihi stok tersedia.']);
+        }
 
         Cart::instance('cart')->add(
             $product->id,
             $product->name,
             $request->quantity,
-            $request->price,
+            $price,
             [
                 'image' => $product->image,
                 'slug' => $product->slug,
@@ -73,8 +81,18 @@ class CartController extends Controller
         $cart = Cart::instance('cart')->getCart();
         if ($cart->has($rowId)) {
             $item = $cart->get($rowId);
+            $product = Product::whereKey($item['id'])
+                ->where('status', 1)
+                ->where('stock_status', 'instock')
+                ->first();
+
+            if (! $product || $item['qty'] >= $product->quantity) {
+                return redirect()->back()->withErrors(['quantity' => 'Jumlah produk melebihi stok tersedia.']);
+            }
+
             Cart::instance('cart')->update($rowId, $item['qty'] + 1);
         }
+
         return redirect()->back();
     }
 
@@ -85,6 +103,7 @@ class CartController extends Controller
             $item = $cart->get($rowId);
             Cart::instance('cart')->update($rowId, $item['qty'] - 1);
         }
+
         return redirect()->back();
     }
 

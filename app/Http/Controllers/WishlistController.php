@@ -18,17 +18,19 @@ class WishlistController extends Controller
     {
         $request->validate([
             'id' => 'required|exists:products,id',
-            'name' => 'required',
-            'price' => 'required|numeric|min:0',
         ]);
 
-        $product = Product::findOrFail($request->id);
+        $product = Product::whereKey($request->id)
+            ->where('status', 1)
+            ->where('stock_status', 'instock')
+            ->firstOrFail();
+        $price = (float) ($product->sale_price ?: $product->regular_price);
 
         Cart::instance('wishlist')->add(
             $product->id,
             $product->name,
             1,
-            $request->price,
+            $price,
             [
                 'image' => $product->image,
                 'slug' => $product->slug,
@@ -55,18 +57,30 @@ class WishlistController extends Controller
         $wishlist = Cart::instance('wishlist')->getCart();
         if ($wishlist->has($rowId)) {
             $item = $wishlist->get($rowId);
+            $product = Product::whereKey($item['id'])
+                ->where('status', 1)
+                ->where('stock_status', 'instock')
+                ->first();
 
+            if (! $product || $product->quantity < 1) {
+                return redirect()->back()->withErrors(['product' => 'Produk sudah tidak tersedia.']);
+            }
+
+            $price = (float) ($product->sale_price ?: $product->regular_price);
             Cart::instance('cart')->add(
-                $item['id'],
-                $item['name'],
+                $product->id,
+                $product->name,
                 1,
-                $item['price'],
-                $item['options']
+                $price,
+                [
+                    'image' => $product->image,
+                    'slug' => $product->slug,
+                ]
             );
 
             Cart::instance('wishlist')->remove($rowId);
 
-            return redirect()->back()->with('status', 'Produk "' . $item['name'] . '" dipindahkan ke Keranjang!');
+            return redirect()->back()->with('status', 'Produk "' . $product->name . '" dipindahkan ke Keranjang!');
         }
 
         return redirect()->back();
