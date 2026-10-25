@@ -9,6 +9,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\ProfileController;
 
 /* Rute untuk Halaman Utama (Beranda/Home) */
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
@@ -42,6 +43,10 @@ require __DIR__.'/auth.php';
 // User Routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/account/dashboard', [UserController::class, 'index'])->name('user.index');
+    Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 // Admin Routes

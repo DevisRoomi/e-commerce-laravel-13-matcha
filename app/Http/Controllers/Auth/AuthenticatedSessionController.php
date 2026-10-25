@@ -28,8 +28,7 @@ public function store(LoginRequest $request): RedirectResponse
 
         $request->session()->regenerate();
 
-        // Diarahkan langsung ke beranda utama kita
-        return redirect('/');
+        return redirect()->intended(route('dashboard', absolute: false));
     }
     /**
      * Destroy an authenticated session.
